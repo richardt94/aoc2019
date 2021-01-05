@@ -45,27 +45,27 @@ class DonutMaze:
         dirs = [(0,1), (1,0), (0,-1), (-1,0)]
 
         if "AA" in self.oportals:
-            bfs.append((*self.oportals["AA"], 0))
+            bfs.append((*self.oportals["AA"], 0, 0))
         else:
-            bfs.append((*self.iportals["AA"], 0))
+            bfs.append((*self.iportals["AA"], 0, 0))
 
         if "ZZ" in self.oportals:
-            tgt = self.oportals["ZZ"]
+            tgt = (*self.oportals["ZZ"], 0)
         else:
-            tgt = self.iportals["ZZ"]
+            tgt = (*self.iportals["ZZ"], 0)
 
         while len(bfs) > 0:
-            j, i, dist = bfs.popleft()
-            if (j, i) == tgt:
+            j, i, lvl, dist = bfs.popleft()
+            if (j, i, lvl) == tgt:
                 return dist
-            visited.add((j,i))
+            visited.add((j,i,lvl))
             for direc in dirs:
                 nj, ni = j + direc[0], i + direc[1]
-                if (nj, ni) in visited:
+                if (nj, ni, lvl) in visited:
                     continue
                 mazechar = self.mazemap[nj][ni]
                 if mazechar == '.':
-                    bfs.append((nj,ni,dist+1))
+                    bfs.append((nj,ni,lvl,dist+1))
                 elif 'A' <= mazechar <= 'Z':
                     if direc == (0,-1) or direc == (-1,0):
                         pkey = self.mazemap[nj + direc[0]][ni + direc[1]] + mazechar
@@ -74,9 +74,14 @@ class DonutMaze:
                     if pkey == "AA" or pkey == "ZZ":
                         continue
                     if (j, i) == self.oportals[pkey]:
-                        bfs.append((*self.iportals[pkey], dist + 1))
+                        if lvl > 0:
+                            nloc = (*self.iportals[pkey], lvl - 1, dist + 1)
+                            if nloc not in visited:
+                                bfs.append(nloc)
                     else:
-                        bfs.append((*self.oportals[pkey], dist + 1))
+                        nloc = (*self.oportals[pkey], lvl + 1, dist + 1)
+                        if nloc not in visited:
+                            bfs.append(nloc)
         return -1
 
 maze = DonutMaze("inputday20.txt")
