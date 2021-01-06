@@ -94,7 +94,8 @@ class IntcodeComputer:
 #can i jump now and cross a hole? Will the jump strand me?
 #a jump that crosses a hole means (!A or !B or !C) and D
 #I am not stranded after the jump only iff (E and (F or I)) or H
-prog = """NOT A T
+prog = \
+"""NOT A T
 OR T J
 NOT B T
 OR T J
