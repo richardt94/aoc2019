@@ -6,7 +6,7 @@ imagedata = [int(c) for c in imagedata[:-1]]
 w = 25
 h = 6
 
-nlayers = len(imagedata)/(w*h)
+nlayers = len(imagedata)//(w*h)
 
 minlayer = 0
 minz = w*h
@@ -22,18 +22,18 @@ n2 = sum([px==2 for px in imagedata[minlayer*w*h:(minlayer+1)*w*h]])
 
 assert(minz+n1+n2 == w*h)
 
-print n1*n2
+print(n1*n2)
 
 finimg = [2 for _ in range(w*h)]
 
 for layer in range(nlayers):
     finimg = [imagedata[layer*w*h+i] if finimg[i] == 2 else finimg[i] for i in range(w*h)]
 
-printchars = [' ','1']
+printchars = [' ','#']
 
 for z in range(h):
     pstr = ''
     for x in range(w):
         pstr += printchars[finimg[z*w+x]]
-    print pstr
+    print(pstr)
 

@@ -35,7 +35,7 @@ for i1 in ir:
                 print("error, invalid opcode!")
                 done = True
         if intcode[0] == 19690720:
-            print i1,i2
+            print(i1,i2)
             break
 
     else:

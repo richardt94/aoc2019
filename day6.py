@@ -59,6 +59,8 @@ def transfers(tar,cur):
     
 tree = traversing_builder(Celeste('COM',None,0))
 
+print(traversing_counter(tree))
+
 you = find_target('YOU',tree)[1]
 
 counts = transfers('SAN',you)-2

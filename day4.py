@@ -22,5 +22,5 @@ for x in range(183564,657474):
         if rep:
             xctr += 1
 
-print xctr
+print(xctr)
         

@@ -71,4 +71,4 @@ for i1 in range(i1r):
         if (inter_length < min_inter_length or min_inter_length <= 0) and inter_length > 0:
             min_inter_length = inter_length
 
-print min_inter_length
+print(min_inter_length)

@@ -1,3 +1,5 @@
+import os
+
 class Display:
     displaychars = [' ','X','#','_','O']
     def __init__(self):
@@ -22,6 +24,7 @@ class Display:
         return ctr
 
     def show(self):
+        os.system("cls")
         xvals = [coords[0] for coords in self.displaydict]
         yvals = [coords[1] for coords in self.displaydict]
 

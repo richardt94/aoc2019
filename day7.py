@@ -1,5 +1,4 @@
 import itertools
-import pdb
 
 with open('inputday7.txt','r') as f:
     intcode = f.read()
@@ -86,7 +85,7 @@ def outsig(phase):
                 intcode[params[2]] = str(int(int(intcode[params[0]]) == int(intcode[params[1]])))
                 idx += 4
             else:
-                print("error, invalid opcode!")
+                # print("error, invalid opcode!")
                 done[current_amp] = True
         aidx[current_amp] = idx        
         current_amp = (current_amp + 1) % 5
@@ -99,7 +98,7 @@ def outsig(phase):
 maxout = 0
 
 phase = (9,7,8,5,6)
-print outsig(phase)
+print(outsig(phase))
 
 
 perms = itertools.permutations(range(5,10))
@@ -111,5 +110,5 @@ for perm in perms:
         maxout = sig
         maxphase = perm
 
-print maxout,maxphase
+print(maxout,maxphase)
 

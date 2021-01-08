@@ -44,7 +44,7 @@ while not done:
         intcode[params[2]] = str(int(intcode[params[0]]) * int(intcode[params[1]]))
         idx += 4
     elif opcode == 3:
-        intcode[params[0]] = str(int(raw_input('opcode 3 value:')))
+        intcode[params[0]] = str(int(input('opcode 3 value:')))
         idx += 2
     elif opcode == 4:
         print(intcode[params[0]])
